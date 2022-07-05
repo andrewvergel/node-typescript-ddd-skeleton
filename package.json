@@ -1,8 +1,11 @@
 {
-  "name": "nodejs",
+  "name": "node-typescript-ddd-skeleton",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "npx eslint --fix \"{src,apps,libs,test}/**/*.ts\" -c .eslintrc.js",
