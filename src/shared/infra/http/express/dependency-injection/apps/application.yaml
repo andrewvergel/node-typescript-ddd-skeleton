@@ -1,0 +1,9 @@
+services:
+
+  Apps.mooc.controllers.RootGetController:
+    class: ../../controllers/RootGetController
+    arguments: []
+
+  Apps.mooc.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
