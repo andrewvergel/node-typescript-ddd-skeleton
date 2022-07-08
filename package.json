@@ -7,11 +7,11 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier": "prettier --config .prettierrc src/**/*.ts --write",
     "lint": "npx eslint --fix \"{src,apps,libs,test}/**/*.ts\" -c .eslintrc.js",
     "test:format": "yarn run prettier && yarn run lint",
     "test:unit": "jest --coverage",
-    "develop": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'yarn run test:format && yarn run tsnode'",
+    "develop": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec \"yarn run test:format && yarn run tsnode\"",
     "tsnode": "ts-node-dev -r tsconfig-paths/register --exit-child --transpile-only --ignore-watch node_modules --respawn ./src/start.ts",
     "build": "babel ./src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "prestart": "yarn run test:format",
@@ -35,8 +35,9 @@
     "helmet": "^4.6.0",
     "http-status": "^1.5.0",
     "is-empty": "^1.2.0",
-    "node-dependency-injection": "^2.7.1",
     "nunjucks": "^3.2.3",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.7.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

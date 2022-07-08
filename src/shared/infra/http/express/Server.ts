@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { json, urlencoded } from 'body-parser';
 import compress from 'compression';
 import errorHandler from 'errorhandler';
@@ -8,6 +9,8 @@ import * as http from 'http';
 import httpStatus from 'http-status';
 import isEmpty from 'is-empty';
 import { registerRoutes } from './routes';
+
+import '../../../containers';
 
 export class Server {
   private express: express.Express;
@@ -44,9 +47,7 @@ export class Server {
     return new Promise((resolve) => {
       this.httpServer = this.express.listen(this.port, () => {
         console.log(
-          `  Mock Backend App is running at http://localhost:${
-            this.port
-          } in ${this.express.get('env')} mode`
+          `  Mock Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`
         );
         console.log('  Press CTRL-C to stop\n');
         resolve();

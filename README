@@ -1,5 +1,13 @@
 # NodeJs typescript clean
 
+## Clean
+
+-> Router
+-> Controller <- Repositorio <- Interfaz
+-> Service <- Implementacion del Modelo (Repositorio) <- Model repositorio (Interfaz) <- DTO del Modelo (opcional)
+-> Domain(Service) Repositorio <- Crear Contanier en Shared
+-> Data
+
 - Api de autenticación de usuarios que tenga la opción de utilizar
   - Registro
     - Registro con Email
@@ -19,77 +27,84 @@
       - Usuario
         - Administrar su perfil
       - Publicar Posts de Texto
-      - Publicar Posts de Imagenes  
+      - Publicar Posts de Imagenes
 
 # Modelo de datos
-  - Roles
-    - id
-    - created
-    - updated
-    - status
-    - name
-  - Acciones
-    - id
-    - created
-    - updated
-    - status
-    - name
-    - path
-  - Perfiles
-    - id
-    - created
-    - updated
-    - status 
-    - name
-  - Perfiles && Acciones
-    - id
-    - profile_id
-    - action_id
-    - read
-    - write
-    - update
-    - delete
-  - Usuarios
-    - id
-    - created
-    - updated
-    - status
-    - email 
-    - alias 
-    - password
-    - oauth_data
-    - user_image
-    - profile_id
-  - Posts
-    - id
-    - created
-    - updated
-    - status
-    - post_title
-    - post_content
-    - post_image
-    - user_id
+
+- Roles
+  - id
+  - created
+  - updated
+  - status
+  - name
+- Acciones
+  - id
+  - created
+  - updated
+  - status
+  - name
+  - path
+- Perfiles
+  - id
+  - created
+  - updated
+  - status
+  - name
+- Perfiles && Acciones
+  - id
+  - profile_id
+  - action_id
+  - read
+  - write
+  - update
+  - delete
+- Usuarios
+  - id
+  - created
+  - updated
+  - status
+  - email
+  - alias
+  - password
+  - oauth_data
+  - user_image
+  - profile_id
+- Posts
+  - id
+  - created
+  - updated
+  - status
+  - post_title
+  - post_content
+  - post_image
+  - user_id
 
 ## Capa HTTP
+
 [] express
 [] nestjs
 
 ## Capa seguridad HTTP
+
 - helmet
 
 ## Capa de Logs
+
 - winston
 - morgan
 
 ## Capa de errores
+
 - Sentry
 
 ## Capa de validación de inputs
+
 - express-validator
 - celebrate
 - schema validator ajv.js.org
 
 ## Capa de Datos
+
 - postgres
 - postgres con graphiql
 - graphiql remoto
@@ -99,33 +114,42 @@
 - firebase
 
 ## Capa funcionalidades externas
+
 - auth de firebase (google, twitter, facebook)
 - auth0
 
 ## Capa de JWT
+
 - jsonwebtoken
 
 ## Capa de encriptar
+
 - crypto-js
 
 ## Capa de test unitario
+
 - jest
 - mocha && chai
 - supertest
 
 ## Capa de datos mocks
+
 - faker
 
 ## Capa de test integrales
+
 - cucumber-js
 
 ## Capa de assets remotos
+
 - gcloud storage
 - aws bucket
 
 ## Capa de Notificaciones email
+
 - Mailgun
 - Sendgrid
 
 ## Capa de Notificaciones sms
+
 - Twilio
