@@ -10,10 +10,19 @@ export default class UsersRoute {
     private requestValidatorProvider: IRequestValidatorProvider
   ) {}
 
+  private async _validateRegister(data: object, next: (data?: any) => any) {
+    try {
+      await this.requestValidatorProvider.validateRegister(data);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  }
+
   register(router: Router) {
     router.post(
       '/v1/users/register',
-      (req: Request, _, next: NextFunction) => this.requestValidatorProvider.validate({ body: req.body }, next),
+      (req: Request, _, next: NextFunction) => this._validateRegister({ body: req.body }, next),
       (req: Request, res: Response) => container.resolve(UsersControllerRepository).register(req, res)
     );
   }

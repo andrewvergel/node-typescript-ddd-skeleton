@@ -1,13 +1,14 @@
 import { container } from 'tsyringe';
 import JoiRequestValidator from './implementations/Joi/JoiRequestValidator';
+import AjvRequestValidator from './implementations/Ajv/AjvRequestValidator';
 import IRequestValidatorProvider from './models/IRequestValidatorProvider';
 
 const providers = {
   joi: {
-    implementation: JoiRequestValidator,
-    schemas: {
-      registro: {}
-    }
+    implementation: JoiRequestValidator
+  },
+  ajv: {
+    implementation: AjvRequestValidator
   }
 };
 

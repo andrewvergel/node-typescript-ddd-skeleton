@@ -1,20 +1,22 @@
-import joi from 'joi';
+import Ajv from 'ajv';
 import IRequestValidatorProvider, { IRequestValidate } from '../../models/IRequestValidatorProvider';
-import JoiSchemaValidator from './JoiSchemaValidator';
+import AjvSchemaValidator from './AjvSchemaValidator';
 
 export default class JoiRequestValidator implements IRequestValidatorProvider {
+  ajv = new Ajv();
+
   async validateRegister(data: IRequestValidate): Promise<any> {
-    const joiSchemaValidator = new JoiSchemaValidator();
-    return this._validate(data, joiSchemaValidator.register);
+    const ajvSchemaValidator = new AjvSchemaValidator();
+    return this._validate(data, ajvSchemaValidator.register);
   }
 
   private async _validate(data: IRequestValidate, schemaValidation: () => object): Promise<any> {
-    const schema = joi.object().keys(schemaValidation());
-    try {
-      await schema.validateAsync(data.body);
-    } catch (error) {
-      console.log(error);
+    const scheme = schemaValidation();
+    const valid = this.ajv.validate(scheme, data.body);
+    if (!valid) {
+      console.log(this.ajv.errors);
       throw new Error('Invalid params');
     }
+    return true;
   }
 }

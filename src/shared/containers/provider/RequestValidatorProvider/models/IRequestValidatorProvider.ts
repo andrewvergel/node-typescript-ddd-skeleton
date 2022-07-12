@@ -1,5 +1,3 @@
-// import IValidateRequestDTO from '../dtos/IValidateRequestDTO';
-
 export interface IRequestValidate {
   body?: object;
   params?: object;
@@ -10,5 +8,5 @@ export interface IRequestValidate {
 }
 
 export default interface IRequestValidatorProvider {
-  validate(request: IRequestValidate, callback: (error?: any) => void): void;
+  validateRegister(request: IRequestValidate): Promise<any>;
 }
