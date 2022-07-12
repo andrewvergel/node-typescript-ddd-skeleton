@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import glob from 'glob';
+import { container } from 'tsyringe';
+
+interface IRequest {
+  register: (data: Router) => void;
+}
 
 function register(routePath: string, router: Router) {
-  const route = require(routePath);
+  const { default: Route } = require(routePath);
+  const route = container.resolve(Route) as IRequest;
   route.register(router);
 }
 

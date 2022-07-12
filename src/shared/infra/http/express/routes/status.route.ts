@@ -1,7 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import StatusControllerRepository from '../controllers/StatusControllerRepository';
-import { container } from 'tsyringe';
-
-export const register = (router: Router) => {
-  router.get('/status', (req: Request, res: Response) => container.resolve(StatusControllerRepository).run(req, res));
-};
+import { container, injectable } from 'tsyringe';
+@injectable()
+export default class StatusRoute {
+  register(router: Router) {
+    router.get('/status', (req, res) => container.resolve(StatusControllerRepository).run(req, res));
+  }
+}
