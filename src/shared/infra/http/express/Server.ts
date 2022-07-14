@@ -1,16 +1,16 @@
 import 'reflect-metadata';
 import { json, urlencoded } from 'body-parser';
 import compress from 'compression';
-import errorHandler from 'errorhandler';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
-import httpStatus from 'http-status';
-import isEmpty from 'is-empty';
+
+import 'express-async-errors';
 import { registerRoutes } from './routes';
 
 import '../../../containers';
+import AppError from '../../../errors/AppError';
 
 export class Server {
   private express: express.Express;
@@ -30,16 +30,35 @@ export class Server {
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
     const router = Router();
-    router.use(errorHandler());
     this.express.use(router);
 
     registerRoutes(router);
 
-    router.use((err: Error, req: Request, res: Response) => {
-      if (!isEmpty(err) && !isEmpty(err.message)) {
-        console.log(err.message);
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+    // Implementation of the error handler
+    this.express.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+      if (err instanceof AppError) {
+        const payloadError = {
+          message: err.message,
+          data: []
+        };
+
+        if (err.errorCode) {
+          Object.assign(payloadError, { code: err.errorCode });
+        }
+
+        if (Boolean(err.data)) {
+          Object.assign(payloadError, { data: err.data });
+        }
+
+        return response.status(err.statusCode).json(payloadError);
       }
+
+      console.log('error handle', err);
+
+      return response.status(500).json({
+        message: 'Internal Server Error',
+        code: '99999'
+      });
     });
   }
 

@@ -18,7 +18,9 @@ module.exports = {
           match: true
         }
       }
-    ]
+    ],
+    '@typescript-eslint/no-unused-vars': ['warn'],
+    '@typescript-eslint/no-throw-literal': 'off'
   },
   plugins: ['import', 'prettier'],
   parserOptions: {
