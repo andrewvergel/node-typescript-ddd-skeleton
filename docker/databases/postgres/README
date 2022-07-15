@@ -1,0 +1,45 @@
+# PostgreSQL
+
+## Docker ejecutar la primera vez
+
+0. Copiar el .env.example a .env
+
+1. Exportar variables de entorno (Linux y Max)
+
+```
+export $(cat .env | xargs)
+```
+
+2. Iniciar el postgres por primera vez
+
+```
+cd docker/databases/postgres;
+export $(cat .env | xargs);
+docker-compose -f docker-compose.install.yml up -d
+```
+
+3. Verificamos que inicie correctamente
+
+```
+docker logs -f db.local
+```
+
+Salida debe contener esta linea
+
+```
+2022-07-15 22:19:44.446 UTC [1] LOG:  database system is ready to accept connections
+```
+
+4. Detener y destruir contenedor el docker-compose
+
+```
+docker-compose down
+```
+
+## Docker ejecutar luego normalmente
+
+```
+cd docker/databases/postgres;
+export $(cat .env | xargs);
+docker-compose up -d --force-recreate --build
+```
