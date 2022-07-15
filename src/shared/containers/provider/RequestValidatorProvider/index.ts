@@ -12,4 +12,4 @@ const providers = {
   }
 };
 
-container.registerSingleton<IRequestValidatorProvider>('RequestValidatorProvider', providers.joi.implementation);
+container.registerSingleton<IRequestValidatorProvider>('RequestValidatorProvider', providers.ajv.implementation);
