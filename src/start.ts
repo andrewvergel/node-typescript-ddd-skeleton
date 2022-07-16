@@ -1,13 +1,17 @@
 import { App } from './App';
+import Datasource from './Datasource';
 
-try {
-  new App().start();
-} catch (e) {
-  console.log(e);
-  process.exit(1);
-}
+(async () => {
+  try {
+    new Datasource().start();
+    new App().start();
+  } catch (e: any) {
+    console.log('Start Error::', e.message);
+    process.exit(1);
+  }
 
-process.on('uncaughtException', (err) => {
-  console.log('uncaughtException', err);
-  process.exit(1);
-});
+  process.on('uncaughtException', (err) => {
+    console.log('uncaughtException', err);
+    process.exit(1);
+  });
+})();

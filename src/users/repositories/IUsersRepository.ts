@@ -2,7 +2,7 @@ import IRegisterUserDTO from '../dto/IRegisterUserDTO';
 
 export interface IUserCreated {
   id: number;
-  email: string;
+  username: string;
   password: string;
 }
 export default interface IUsersRepository {

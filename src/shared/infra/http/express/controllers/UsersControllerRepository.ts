@@ -6,9 +6,9 @@ import { container } from 'tsyringe';
 export default class UserControllerRepository implements IUsersControllerRepository {
   async register(req: Request, res: Response): Promise<Response> {
     const { body } = req;
-    const { email, password } = body;
+    const { username, password } = body;
     const userRegisterService = container.resolve(UsersRegisterService);
-    const result = await userRegisterService.execute({ email, password });
+    const result = await userRegisterService.execute({ username, password });
     return res.json(result);
   }
 }

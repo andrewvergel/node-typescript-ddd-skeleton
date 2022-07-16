@@ -43,3 +43,33 @@ cd docker/databases/postgres;
 export $(cat .env | xargs);
 docker-compose up -d --force-recreate --build
 ```
+
+## Inicializar la Base de datos
+
+0. Entrar al contenedor de la base de datos
+
+```
+docker exec -it db.local sh
+```
+
+1. Conectar psql
+
+```
+# psql -U postgres
+```
+
+2. Crar la base de Datos
+
+```
+CREATE DATABASE db_clean;
+```
+
+3. Crear tabla
+
+```
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	username VARCHAR ( 50 ) UNIQUE NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL
+);
+```
