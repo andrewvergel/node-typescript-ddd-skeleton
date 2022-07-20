@@ -3,7 +3,7 @@ import Datasource from './Datasource';
 
 (async () => {
   try {
-    new Datasource().start();
+    await new Datasource().start();
     new App().start();
   } catch (e: any) {
     console.log('Start Error::', e.message);
