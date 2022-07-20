@@ -4,9 +4,10 @@
 
 0. Copiar el .env.example a .env
 
-1. Exportar variables de entorno (Linux y Max)
+1. Exportar variables de entorno (Linux y Mac)
 
 ```
+cd docker/databases/postgres;
 export $(cat .env | xargs)
 ```
 
@@ -58,7 +59,7 @@ docker exec -it db.local sh
 # psql -U postgres
 ```
 
-2. Crar la base de Datos
+2. Crear la base de Datos
 
 ```
 CREATE DATABASE db_clean;
