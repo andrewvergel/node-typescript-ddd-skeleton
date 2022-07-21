@@ -81,37 +81,37 @@
 
 ## Capa HTTP
 
-[] express
+[X] express
 [] nestjs
 
 ## Capa seguridad HTTP
 
-- helmet
+[] helmet
 
-## Capa de Logs
+## Capa de Logs a Stack Driver
 
-- winston
-- morgan
+[] winston
+[] morgan
 
 ## Capa de errores
 
-- Sentry
+[] Sentry
 
 ## Capa de validación de inputs
 
-- express-validator
-- celebrate
-- schema validator ajv.js.org
+[] express-validator
+[] celebrate
+[] schema validator ajv.js.org
 
 ## Capa de Datos
 
-- postgres
-- postgres con graphiql
-- graphiql remoto
-- mysql
-- mongodb
-- redis
-- firebase
+[X] postgres
+[] postgres con graphiql
+[] api remoto
+[X] mysql
+[] mongodb
+[X] redis
+[] firebase
 
 ## Capa funcionalidades externas
 
@@ -153,3 +153,7 @@
 ## Capa de Notificaciones sms
 
 - Twilio
+
+## Capa de Colas
+
+- Bull
