@@ -16,6 +16,7 @@ export $(cat .env | xargs)
 ```
 cd docker/databases/postgres;
 export $(cat .env | xargs);
+mkdir pgdata;
 docker-compose -f docker-compose.install.yml up -d
 ```
 
@@ -65,7 +66,13 @@ docker exec -it db.local sh
 CREATE DATABASE db_clean;
 ```
 
-3. Crear tabla
+3. Conectarnos a la Base de Datos
+
+```
+\c db_clean;
+```
+
+4. Crear tabla
 
 ```
 CREATE TABLE users (
