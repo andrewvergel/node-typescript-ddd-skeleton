@@ -1,11 +1,9 @@
 import IDatasource from '../models/IDatasource';
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import { User } from '../../../../users/infra/sequelize/entities/User';
-const dbName = 'db_clean';
-const dbUser = 'postgres';
-const dbHost = 'localhost';
-const dbDriver = 'postgres';
-const dbPassword = 'toor';
+import DBConfig from './config/mysql';
+
+/* Models */
 const dbModels = [User];
 
 export default class DatabaseSourceSequelize implements IDatasource {
@@ -14,12 +12,9 @@ export default class DatabaseSourceSequelize implements IDatasource {
   async up(): Promise<any> {
     if (!DatabaseSourceSequelize.connection) {
       try {
+        const configDatabase = { ...DBConfig } as SequelizeOptions;
         DatabaseSourceSequelize.connection = new Sequelize({
-          database: dbName,
-          username: dbUser,
-          password: dbPassword,
-          host: dbHost,
-          dialect: dbDriver,
+          ...configDatabase,
           models: dbModels
         });
         return await DatabaseSourceSequelize.connection.authenticate();

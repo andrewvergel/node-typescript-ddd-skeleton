@@ -1,13 +1,14 @@
 import IDatasource from '../models/IDatasource';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import DBConfig from './config/postgres';
+
+const configDb = {
+  ...DBConfig,
+  entities: ['./src/**/infra/typeorm/entities/*.ts']
+};
 const config: DataSourceOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'toor',
-  database: 'db_clean',
-  entities: ['./src/**/infra/typeorm/entities/*.ts']
+  ...configDb
 };
 
 export default class DatabaseSourceTypeOrm implements IDatasource {

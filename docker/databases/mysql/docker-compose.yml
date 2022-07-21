@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  mariadb:
+    build: .
+    restart: always
+    container_name : ${CONTAINER_NAME}
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "10m"
+            max-file: "3"
+    ports:
+      - ${CONTAINER_PORT}:3306
+    volumes:
+      - ./mydata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

@@ -51,7 +51,7 @@ docker-compose up -d --force-recreate --build
 0. Entrar al contenedor de la base de datos
 
 ```
-docker exec -it db.local sh
+docker exec -it db.postgres.local sh
 ```
 
 1. Conectar psql

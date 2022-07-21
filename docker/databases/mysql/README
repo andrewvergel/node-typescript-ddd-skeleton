@@ -1,0 +1,61 @@
+# Msyql
+
+## Docker
+
+```
+cd docker/databases/mysql;
+export $(cat .env | xargs);
+docker-compose up -d --force-recreate --build
+```
+
+## Inicializar la Base de datos
+
+0. Entrar al contenedor de la base de datos
+
+```
+docker exec -it db.mysql.local bash
+```
+
+1. Conectar a mysql, colocar clave que se coloco en .env ${MYSQL_ROOT_PASSWORD}
+
+```
+mysql -u root -p
+```
+
+Resultado esperado
+
+```
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+```
+
+2. Crear la base de Datos
+
+```
+CREATE DATABASE db_clean;
+```
+
+3. Conectarnos a la Base de Datos
+
+```
+use db_clean;
+```
+
+4. Crear tabla
+
+```
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	username VARCHAR ( 50 ) UNIQUE NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL
+);
+```
+
+5. Detener y destruir contenedor el docker-compose
+
+```
+docker-compose down
+```
