@@ -86,7 +86,7 @@
 
 ## Capa seguridad HTTP
 
-[] helmet
+[X] helmet
 
 ## Capa de Logs a Stack Driver
 
@@ -100,18 +100,18 @@
 ## Capa de validación de inputs
 
 [] express-validator
-[] celebrate
-[] schema validator ajv.js.org
+[X] celebrate
+[X] schema validator ajv.js.org
 
 ## Capa de Datos
 
 [X] postgres
-[] postgres con graphiql
-[] api remoto
 [X] mysql
-[] mongodb
 [X] redis
 [] firebase
+[] api remoto
+[] postgres con graphiql
+[] mongodb
 
 ## Capa funcionalidades externas
 
@@ -142,18 +142,18 @@
 
 ## Capa de assets remotos
 
-- gcloud storage
-- aws bucket
+[] gcloud storage
+[] aws bucket
 
 ## Capa de Notificaciones email
 
-- Mailgun
-- Sendgrid
+[] Mailgun
+[] Sendgrid
 
 ## Capa de Notificaciones sms
 
-- Twilio
+[] Twilio
 
 ## Capa de Colas
 
-- Bull
+[] Bull
