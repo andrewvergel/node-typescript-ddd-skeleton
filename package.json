@@ -41,6 +41,7 @@
     "mysql2": "^2.3.3",
     "nunjucks": "^3.2.3",
     "pg": "^8.7.3",
+    "redis-om": "^0.3.6",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.21.3",
     "sequelize-typescript": "^2.1.3",

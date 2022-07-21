@@ -1,0 +1,63 @@
+# Redis
+
+## Docker ejecutar la primera vez
+
+1. Iniciar el postgres por primera vez
+
+```
+cd docker/databases/redis;
+export $(cat .env | xargs);
+mkdir data;
+docker-compose -f docker-compose.yml up -d
+```
+
+2. Verificar contenedor
+
+```
+docker logs -f db.redis.local
+```
+
+Debe mostrar
+
+```
+1:M 21 Jul 2022 19:55:46.373 * <ReJSON> Exported RedisJSON_V1 API
+1:M 21 Jul 2022 19:55:46.373 * <ReJSON> Exported RedisJSON_V2 API
+1:M 21 Jul 2022 19:55:46.373 * <ReJSON> Enabled diskless replication
+1:M 21 Jul 2022 19:55:46.373 * <ReJSON> Created new data type 'ReJSON-RL'
+1:M 21 Jul 2022 19:55:46.375 * Module 'ReJSON' loaded from /usr/lib/redis/modules/rejson.so
+1:M 21 Jul 2022 19:55:46.391 * Ready to accept connections
+```
+
+3. Probar redis
+
+```
+docker exec -it db.redis.local bash
+```
+
+Entrar al redis
+
+```
+redis-cli
+```
+
+Debe mostrar algo asi
+
+```
+127.0.0.1:6379>
+```
+
+Iniciar sesión en redis, el usuario por defecto es default y la clave la que se asigno en el .env REDIS_PASSWORD
+
+```
+AUTH ${REDIS_PASSWORD}
+```
+
+Probar JSON
+
+```
+127.0.0.1:6379> JSON.SET foo $ '"bar"'
+OK
+127.0.0.1:6379> JSON.GET foo $
+"[\"bar\"]"
+
+```

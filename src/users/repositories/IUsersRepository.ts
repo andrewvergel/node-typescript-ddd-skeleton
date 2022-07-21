@@ -1,7 +1,7 @@
 import IRegisterUserDTO from '../dto/IRegisterUserDTO';
 
 export interface IUserCreated {
-  id: number;
+  id: number | string;
   username: string;
   password: string;
 }
