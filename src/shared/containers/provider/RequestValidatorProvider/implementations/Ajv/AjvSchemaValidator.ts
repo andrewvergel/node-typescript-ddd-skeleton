@@ -5,6 +5,10 @@ interface IRegisterData {
   password: string;
 }
 
+interface IGetByIdData {
+  id: string;
+}
+
 export default class AjvSchemaValidator {
   register(): JSONSchemaType<IRegisterData> {
     return {
@@ -14,6 +18,17 @@ export default class AjvSchemaValidator {
         password: { type: 'string' }
       },
       required: ['username', 'password'],
+      additionalProperties: false
+    };
+  }
+
+  getById(): JSONSchemaType<IGetByIdData> {
+    return {
+      type: 'object',
+      properties: {
+        id: { type: 'string' }
+      },
+      required: ['id'],
       additionalProperties: false
     };
   }

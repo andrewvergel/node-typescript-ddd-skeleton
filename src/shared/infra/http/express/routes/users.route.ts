@@ -19,11 +19,25 @@ export default class UsersRoute {
     }
   }
 
+  private async _validateGetById(data: object, next: (data?: any) => any) {
+    try {
+      await this.requestValidatorProvider.validateGetById(data);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  }
+
   register(router: Router) {
     router.post(
       '/v1/users/register',
       (req: Request, _, next: NextFunction) => this._validateRegister({ body: req.body }, next),
       (req: Request, res: Response) => container.resolve(UsersControllerRepository).register(req, res)
+    );
+    router.get(
+      '/v1/users/:id',
+      (req: Request, _, next: NextFunction) => this._validateGetById({ body: req.params }, next),
+      (req: Request, res: Response) => container.resolve(UsersControllerRepository).getById(req, res)
     );
   }
 }

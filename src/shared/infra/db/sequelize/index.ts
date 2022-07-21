@@ -1,7 +1,7 @@
 import IDatasource from '../models/IDatasource';
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import { User } from '../../../../users/infra/sequelize/entities/User';
-import DBConfig from './config/mysql';
+import DBConfig from './config/postgresql';
 
 /* Models */
 const dbModels = [User];

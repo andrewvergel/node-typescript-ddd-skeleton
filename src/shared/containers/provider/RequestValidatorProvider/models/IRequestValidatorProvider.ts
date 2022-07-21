@@ -9,4 +9,5 @@ export interface IRequestValidate {
 
 export default interface IRequestValidatorProvider {
   validateRegister(request: IRequestValidate): Promise<any>;
+  validateGetById(request: IRequestValidate): Promise<any>;
 }

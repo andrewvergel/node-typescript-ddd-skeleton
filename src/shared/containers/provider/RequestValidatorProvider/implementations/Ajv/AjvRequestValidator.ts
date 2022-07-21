@@ -11,6 +11,11 @@ export default class AjvRequestValidator implements IRequestValidatorProvider {
     return this._validate(data, ajvSchemaValidator.register);
   }
 
+  async validateGetById(data: IRequestValidate): Promise<any> {
+    const ajvSchemaValidator = new AjvSchemaValidator();
+    return this._validate(data, ajvSchemaValidator.getById);
+  }
+
   private async _validate(data: IRequestValidate, schemaValidation: () => object): Promise<any> {
     const scheme = schemaValidation();
     const valid = this.ajv.validate(scheme, data.body);

@@ -7,4 +7,10 @@ export default class JoiSchemaValidator {
       password: Joi.string().required()
     };
   }
+
+  getById() {
+    return {
+      id: Joi.string().required()
+    };
+  }
 }

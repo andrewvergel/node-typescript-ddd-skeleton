@@ -5,6 +5,12 @@ export interface IUserCreated {
   username: string;
   password: string;
 }
+
+export interface IUserById {
+  id: number | string;
+}
+
 export default interface IUsersRepository {
   register(data: IRegisterUserDTO): Promise<IUserCreated>;
+  getById(data: IUserById): Promise<IUserCreated | null>;
 }

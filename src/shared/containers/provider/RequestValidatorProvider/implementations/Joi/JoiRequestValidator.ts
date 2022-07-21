@@ -9,6 +9,11 @@ export default class JoiRequestValidator implements IRequestValidatorProvider {
     return this._validate(data, joiSchemaValidator.register);
   }
 
+  async validateGetById(data: IRequestValidate): Promise<any> {
+    const joiSchemaValidator = new JoiSchemaValidator();
+    return this._validate(data, joiSchemaValidator.getById);
+  }
+
   private async _validate(data: IRequestValidate, schemaValidation: () => object): Promise<any> {
     const schema = joi.object().keys(schemaValidation());
     try {
